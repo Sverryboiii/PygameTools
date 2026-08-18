@@ -3,13 +3,6 @@ from .Draw import Draw
 from .Ui import Button
 import pygame
 
-__all__ = [
-    "Config",
-    "Runtime",
-    "Draw",
-    "Button"
-]
-
 def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display: int = 0, vsync: int = 0) -> pygame.Surface:
     """
     :param width: Width of the screen
@@ -24,5 +17,11 @@ def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display
     Config.set_display(screen)
     return Config.screen
 
-def init():
-    pass
+
+__all__ = [
+    "Config",
+    "Runtime",
+    "Draw",
+    "Button",
+    "set_display"
+]
