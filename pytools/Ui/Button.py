@@ -10,7 +10,7 @@ class Button:
 
             surface: pygame.Surface,
 
-            display: pygame.Surface = Config.screen,
+            display: pygame.Surface,
             rounding: int = 0,
             resize_surface: bool = False,
             alpha_surface: bool = True,
