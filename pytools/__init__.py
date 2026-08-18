@@ -10,7 +10,7 @@ __all__ = [
     "Button"
 ]
 
-def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display: int = 0, vsync: int = 0):
+def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display: int = 0, vsync: int = 0) -> pygame.Surface:
     """
     :param width: Width of the screen
     :param height: Height of the screen
@@ -21,6 +21,7 @@ def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display
     :return:
     """
     Config.screen = pygame.display.set_mode((width, height), flags, depth, display, vsync)
+    return Config.screen
 
 def init():
     pass
