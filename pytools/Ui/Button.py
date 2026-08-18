@@ -31,6 +31,9 @@ class Button:
         :param alpha_surface: If the background of the surface is invisible (Not needed if the surface is already alpha or
         if you rendered a text).
         :param center_surface: If the surface should be centered or just be at the 0,0 coordinate of the button.
+        :param function: This function gets executed when you release the button.
+        :param args: Used as arguments for the function of the button.
+        :param kwargs: Used as key-word arguments for the function of the button.
         """
 
         self.display = display
@@ -62,6 +65,17 @@ class Button:
                 max(0, self.button_color[2] - 30)
             ),
             rectangle=self.rect,
+            border_radius=self.rounding
+        )
+        Draw.draw_rect(
+            display=self.display,
+            color=(
+                max(0, self.button_color[0] + 30),
+                max(0, self.button_color[1] + 30),
+                max(0, self.button_color[2] + 30)
+            ),
+            rectangle=self.rect,
+            width=3,
             border_radius=self.rounding
         )
 
