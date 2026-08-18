@@ -41,10 +41,10 @@ class Button:
         self.center_surf = center_surface
 
     def update(self) -> None:
-        pygame.draw.rect(
-            surface=self.display,
+        Draw.draw_rect(
+            display=self.display,
             color=self.button_color,
-            rect=self.rect,
+            rectangle=self.rect,
             border_radius=self.rounding
         )
         Draw.draw_surface(
