@@ -89,5 +89,7 @@ class Button:
             self.pressed = True
         return None
 
-    def update(self) -> None:
+    def update(self) -> Any | None:
+        value = self.events()
         self.draw()
+        return value
