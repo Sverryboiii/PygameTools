@@ -6,6 +6,7 @@ import pygame
 class Button:
     def __init__(
             self,
+            *args,
             rect: pygame.Rect,
             button_color: tuple[int, int, int] | pygame.Color,
 
@@ -17,7 +18,8 @@ class Button:
             rounding: int = 0,
             resize_surface: bool = False,
             alpha_surface: bool = True,
-            center_surface: bool = True
+            center_surface: bool = True,
+            **kwargs
     ):
         """
         :param rect: A rectangle made with pygame.Rect.
@@ -39,6 +41,8 @@ class Button:
         self.rounding = rounding
 
         self.function = function
+        self.args = args
+        self.kwargs = kwargs
 
         self.surf = surface
         self.resize_surf = resize_surface
@@ -80,7 +84,7 @@ class Button:
         if self.pressed:
             if not click or not self.rect.collidepoint(mp):
                 self.pressed = False
-                return self.function
+                return self.function(*self.args, **self.kwargs)
             return None
 
         if not click:

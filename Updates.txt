@@ -5,4 +5,5 @@
  - Buttons
 
 0.1.1
- -
+ - FPS control
+ - Arial font
