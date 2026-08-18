@@ -20,7 +20,8 @@ def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display
     :param vsync: Caps framerate to the monitor to avoid screen tearing (Screen tearing is just a visual glitch.)
     :return:
     """
-    Config.screen = pygame.display.set_mode((width, height), flags, depth, display, vsync)
+    screen = pygame.display.set_mode((width, height), flags, depth, display, vsync)
+    Config.set_display(screen)
     return Config.screen
 
 def init():
