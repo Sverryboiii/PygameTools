@@ -1,6 +1,6 @@
-from core import Config, Runtime
-from Draw import Draw
-from Ui import Button
+from .core import Config, Runtime
+from .Draw import Draw
+from .Ui import Button
 import pygame
 
 __all__ = [
