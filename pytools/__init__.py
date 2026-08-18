@@ -21,7 +21,7 @@ def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display
     :return:
     """
     screen = pygame.display.set_mode((width, height), flags, depth, display, vsync)
-    Config.set_display(screen)
+    Config.set_display(screen) #
     return Config.screen
 
 def init():
