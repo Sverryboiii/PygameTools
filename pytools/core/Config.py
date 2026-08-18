@@ -1,4 +1,4 @@
 import pygame
 
 # WINDOW
-screen = None
+screen: pygame.Surface

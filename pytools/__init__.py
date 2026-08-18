@@ -1,5 +1,5 @@
 from Ui import Button as button
-from initialize import Config
+from core import Config
 import pygame
 
 __all__ = ["button"]
