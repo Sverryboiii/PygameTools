@@ -24,15 +24,15 @@ def draw_rect(
     :param border_bottom_right_radius: The rounding of the bottom-right corner.
     """
     pygame.draw.rect(
-        display,
-        color,
-        rectangle,
-        width,
-        border_radius,
-        border_top_left_radius,
-        border_top_right_radius,
-        border_bottom_left_radius,
-        border_bottom_right_radius
+        surface=display,
+        color=color,
+        rect=rectangle,
+        width=width,
+        border_radius=border_radius,
+        border_top_left_radius=border_top_left_radius,
+        border_top_right_radius=border_top_right_radius,
+        border_bottom_left_radius=border_bottom_left_radius,
+        border_bottom_right_radius=border_bottom_right_radius
     )
 
 def draw_surface(
