@@ -79,6 +79,7 @@ class Button:
 
         if self.pressed:
             if not click or not self.rect.collidepoint(mp):
+                self.pressed = False
                 return self.function
             return None
 
