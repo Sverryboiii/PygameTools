@@ -1,5 +1,6 @@
 from pytools.Draw import Draw
 from pytools.core import Config
+from typing import Any, Callable
 import pygame
 
 class Button:
@@ -11,6 +12,8 @@ class Button:
             surface: pygame.Surface,
 
             display: pygame.Surface,
+
+            function: Callable = lambda : None,
             rounding: int = 0,
             resize_surface: bool = False,
             alpha_surface: bool = True,
@@ -35,18 +38,30 @@ class Button:
         self.rect = rect
         self.rounding = rounding
 
+        self.function = function
+
         self.surf = surface
         self.resize_surf = resize_surface
         self.alpha_surface = alpha_surface
         self.center_surf = center_surface
 
-    def update(self) -> None:
+        self.pressed = False
+
+    def draw(self) -> None:
+
+        # Background
         Draw.draw_rect(
             display=self.display,
-            color=self.button_color,
+            color=self.button_color if not self.pressed else (
+                max(0, self.button_color[0] - 30),
+                max(0, self.button_color[1] - 30),
+                max(0, self.button_color[2] - 30)
+            ),
             rectangle=self.rect,
             border_radius=self.rounding
         )
+
+        # Text
         Draw.draw_surface(
             surface=self.surf,
             destination=(0,0) if not self.center_surf else (
@@ -54,3 +69,25 @@ class Button:
                 self.rect.y + self.rect.h/2 - self.surf.get_height()/2
             )
         )
+
+    def events(self) -> Any | None:
+        """
+        :return: Will return None unless pressed and released (In that case it will return the returned value of the function)
+        """
+        mp = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()[0]
+
+        if self.pressed:
+            if not click or not self.rect.collidepoint(mp):
+                return self.function
+            return None
+
+        if not click:
+            return None
+
+        if self.rect.collidepoint(mp):
+            self.pressed = True
+        return None
+
+    def update(self) -> None:
+        self.draw()
