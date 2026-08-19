@@ -62,3 +62,23 @@ def draw_surface(
         area=area,
         special_flags=special_flags
     )
+
+def render_text(
+        text: str,
+        antialias: bool,
+        color: pygame.Color | tuple[int, int, int],
+        background: pygame.Color | tuple[int, int, int] | None = None
+) -> pygame.Surface:
+    """
+    :param text: The text displayed.
+    :param antialias: Blends outer edges of the text, so it looks smoother.
+    :param color: The color of the text.
+    :param background: The color of the background.
+    :return: Returns the surface so you can use it in Draw.draw_surface().
+    """
+    return Config.font.render(
+        text=text,
+        antialias=antialias,
+        color=color,
+        background=background
+    )

@@ -3,6 +3,9 @@ from pytools.core import Config
 from typing import Any, Callable
 import pygame
 
+button_border_width = 3
+color_change_when_pressed = 30
+
 class Button:
     def __init__(
             self,
@@ -70,12 +73,12 @@ class Button:
         Draw.draw_rect(
             display=self.display,
             color=(
-                max(0, self.button_color[0] + 30),
-                max(0, self.button_color[1] + 30),
-                max(0, self.button_color[2] + 30)
+                max(0, self.button_color[0] + color_change_when_pressed),
+                max(0, self.button_color[1] + color_change_when_pressed),
+                max(0, self.button_color[2] + color_change_when_pressed)
             ),
             rectangle=self.rect,
-            width=3,
+            width=button_border_width,
             border_radius=self.rounding
         )
 
