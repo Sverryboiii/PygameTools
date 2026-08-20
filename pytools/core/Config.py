@@ -6,6 +6,7 @@ def default_exit():
     pygame.quit()
     sys.exit()
 
+pygame.font.init()
 welcome_text = pygame.font.SysFont("arial", 100).render("Welcome!", True, (255, 255, 255))
 def frame():
     pygame.transform.scale(welcome_text, (screen.get_width(), screen.get_height()))
