@@ -1,9 +1,18 @@
+from pytools.Draw import Draw
 import pygame, sys
 from typing import Callable
 
 def default_exit():
     pygame.quit()
     sys.exit()
+
+welcome_text = pygame.font.SysFont("arial", 100).render("Welcome!", True, (255, 255, 255))
+def frame():
+    pygame.transform.scale(welcome_text, (screen.get_width(), screen.get_height()))
+    Draw.draw_surface(welcome_text, (0, 0))
+
+def tick():
+    pass
 
 # WINDOW
 screen: pygame.Surface
