@@ -26,8 +26,8 @@ delta_time: int
 
 # Functions
 exit_function = default_exit
-frame_function: Callable
-tick_function: Callable
+frame_function: Callable = frame
+tick_function: Callable = tick
 
 # Ui
 font: pygame.font.Font
