@@ -38,6 +38,9 @@ def set_font(
     Config.font = pygame.font.SysFont(font, size, bold, italic, constructor)
     return Config.font
 
+def start():
+    Runtime.start()
+
 __all__ = [
     "Config",
     "Runtime",

@@ -44,6 +44,42 @@ def draw_rect(
         border_radius=border_radius
     )
 
+def draw_circle(
+        display: pygame.Surface,
+        color: pygame.Color | tuple[int, int, int],
+        center: tuple[int, int],
+        radius: float | int,
+        width: int,
+        draw_top_left: bool = False,
+        draw_top_right: bool = False,
+        draw_bottom_left: bool = False,
+        draw_bottom_right: bool = False,
+):
+    """
+    :param display: The surface the circle gets drawn on.
+    :param color: The color of the circle.
+    :param center: The center position of the circle.
+    :param radius: The radius of the circle.
+    :param width: How thick the edges of the circle are (0 is full circle).
+
+    :param draw_top_left: Decides if pygame draws the top left segment. (If this and the next 3 are False the whole circle gets drawn.
+    :param draw_top_right: Decides if pygame draws the top right segment.
+    :param draw_bottom_left: Decides if pygame draws the bottom left segment.
+    :param draw_bottom_right: Decides if pygame draws the bottom right segment.
+    :return:
+    """
+    pygame.draw.circle(
+        surface=display,
+        color=color,
+        center=center,
+        radius=radius,
+        width=width,
+        draw_top_left=draw_top_left,
+        draw_top_right=draw_top_right,
+        draw_bottom_left=draw_bottom_left,
+        draw_bottom_right=draw_bottom_right
+    )
+
 def draw_surface(
         surface: pygame.Surface,
         destination: tuple[float | int, float | int],
