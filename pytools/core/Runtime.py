@@ -1,4 +1,4 @@
-from pytools import Config
+from pytools.core import Config
 import pygame, sys
 
 tick_counter = 0
