@@ -3,8 +3,9 @@ from typing import Callable, Optional
 import pygame
 
 # Automatic initialization
-pygame.init()
-pygame.key.set_repeat(500, 5)
+def init():
+    pygame.init()
+    pygame.key.set_repeat(500, 5)
 
 # Manual initialization
 def set_display(
