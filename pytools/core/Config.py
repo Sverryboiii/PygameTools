@@ -1,12 +1,13 @@
 from pytools.Draw import Draw
 import pygame, sys
 from typing import Callable
+pygame.init()
+pygame.key.set_repeat(500, 5)
 
 def default_exit():
     pygame.quit()
     sys.exit()
 
-pygame.font.init()
 welcome_text = pygame.font.SysFont("arial", 100).render("Welcome!", True, (255, 255, 255))
 def frame():
     pygame.transform.scale(welcome_text, (screen.get_width(), screen.get_height()))
@@ -26,7 +27,7 @@ clock: pygame.time.Clock = pygame.time.Clock()
 delta_time: int
 
 # Functions
-exit_function = default_exit
+exit_function: Callable = default_exit
 frame_function: Callable = frame
 tick_function: Callable = tick
 
