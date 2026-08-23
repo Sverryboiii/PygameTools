@@ -19,7 +19,11 @@ class SearchBar:
     def draw(self) -> None:
         color = self.color
         if self.selected:
-            color = (min(255, c + 30) for c in color)
+            color = (
+                min(255, color[0] + 30),
+                min(255, color[1] + 30),
+                min(255, color[2] + 30)
+            )
         Draw.draw_rect(
             display=self.display,
             color=color,
