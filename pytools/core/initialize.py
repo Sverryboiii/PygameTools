@@ -2,7 +2,19 @@ from pytools.core import Config, Runtime
 from typing import Callable, Optional
 import pygame
 
-def set_display(width: int, height: int, flags: int = 0, depth: int = 0, display: int = 0, vsync: int = 0) -> pygame.Surface:
+# Automatic initialization
+pygame.init()
+pygame.key.set_repeat(500, 5)
+
+# Manual initialization
+def set_display(
+        width: int,
+        height: int,
+        flags: int = 0,
+        depth: int = 0,
+        display: int = 0,
+        vsync: int = 0
+) -> pygame.Surface:
     """
     :param width: Width of the screen
     :param height: Height of the screen

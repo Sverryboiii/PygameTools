@@ -1,8 +1,6 @@
 from pytools.Draw import Draw
 import pygame, sys
 from typing import Callable
-pygame.init()
-pygame.key.set_repeat(500, 5)
 
 def default_exit():
     pygame.quit()
