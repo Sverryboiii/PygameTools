@@ -11,6 +11,7 @@ from .Draw.Draw import draw_surface, draw_rect, draw_circle, render_text
 # Ui parts
 from .Ui.Button import Button
 from .Ui.SearchBar import SearchBar
+from .Ui.DropDown import DropDown
 
 __all__ = [
     "Config",
