@@ -34,3 +34,4 @@ font: pygame.font.Font
 
 # Colors
 background_color: pygame.Color | tuple[int, int, int] = (25, 25, 25)
+BEIGE: tuple[int, int, int] = (245, 245, 220)

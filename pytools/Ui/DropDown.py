@@ -1,4 +1,6 @@
 from pytools.Collide import Collide
+from pytools.Draw import Draw
+from pytools.core import Config
 from typing import Any
 import pygame
 
@@ -27,20 +29,20 @@ class DropDown:
         self.opened: bool = False
 
     def draw(self) -> None:
-        pygame.draw.rect(
-            surface=self.display,
+        Draw.draw_rect(
+            display=self.display,
             color=self.color,
-            rect=self.rect,
+            rectangle=self.rect,
             border_radius=10,
         )
-        pygame.draw.rect(
-            surface=self.display,
+        Draw.draw_rect(
+            display=self.display,
             color=(
                 self.color[0] + 30,
                 self.color[1] + 30,
                 self.color[2] + 30
             ),
-            rect=self.rect,
+            rectangle=self.rect,
             border_radius=10,
             width=3
         )
@@ -48,29 +50,35 @@ class DropDown:
         if not self.opened:
             return
 
-        for rect in self.choice_rects:
-            pygame.draw.rect(
-                surface=self.display,
+        for c, rect in enumerate(self.choice_rects):
+            Draw.draw_rect(
+                display=self.display,
                 color=(
                     self.color[0] + 30,
                     self.color[1] + 30,
                     self.color[2] + 30
                 ),
-                rect=rect,
+                rectangle=rect,
                 border_radius=10,
                 width=3
             )
-            pygame.draw.rect(
-                surface=self.display,
+            Draw.draw_rect(
+                display=self.display,
                 color=(
                     self.color[0] + 60,
                     self.color[1] + 60,
                     self.color[2] + 60
                 ),
-                rect=rect,
+                rectangle=rect,
                 border_radius=10,
                 width=3
             )
+            text = Draw.render_text(
+                text=str(self.choices[c]),
+                antialias=True,
+                color=Config.BEIGE
+            )
+            Draw.draw_surface(text, (rect.x, rect.y))
 
     def events(self) -> Any | None:
         mp = pygame.mouse.get_pos()
