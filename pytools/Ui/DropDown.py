@@ -74,9 +74,9 @@ class DropDown:
                 width=3
             )
             text = Draw.render_text(
-                text=str(self.choices[c]),
-                antialias=True,
-                color=Config.BEIGE
+                str(self.choices[c]),
+                True,
+                Config.BEIGE
             )
             Draw.draw_surface(text, (rect.x, rect.y))
 
