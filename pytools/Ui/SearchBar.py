@@ -1,5 +1,6 @@
 from pytools.Collide import Collide
 from pytools.Draw import Draw
+from pytools.core import Config
 import pygame
 from typing import Any
 
@@ -13,6 +14,10 @@ class SearchBar:
         self.rect: pygame.Rect = rect
         self.display: pygame.Surface = display
         self.color: pygame.Color | tuple[int, int, int] = color
+
+        self.stored: str = ""
+        self.last_stored: str = ""
+        self.stored_surf: pygame.Surface = Config.font.render(self.stored, True, Config.BEIGE)
 
         self.selected: bool = False
 
@@ -32,15 +37,28 @@ class SearchBar:
         )
         Draw.draw_rect(
             display=self.display,
-            color=color,
+            color=(
+                min(255, color[0] + 30),
+                min(255, color[1] + 30),
+                min(255, color[2] + 30)
+            ),
             rectangle=self.rect,
             border_radius=int(self.rect.h/2),
             width=3
         )
+        Draw.draw_surface(self.stored_surf, (
+            self.rect.x + self.rect.w/2 - self.stored_surf.get_width()/2,
+            self.rect.y + self.rect.h/2 - self.stored_surf.get_height()/2
+        ))
 
     def events(self) -> Any:
         click = pygame.mouse.get_pressed()[0]
         mp = pygame.mouse.get_pos()
+
+        if self.selected:
+            keys = pygame.key.get_pressed()
+            for k in keys:
+                print(k)
 
         if not click:
             return
@@ -58,4 +76,5 @@ class SearchBar:
         if check_events:
             value = self.events()
         self.draw()
+        self.last_stored = self.stored
         return value

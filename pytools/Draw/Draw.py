@@ -102,8 +102,7 @@ def draw_surface(
 def render_text(
         text: str,
         antialias: bool,
-        color: pygame.Color | tuple[int, int, int],
-        background: pygame.Color | tuple[int, int, int] | None = None
+        color: pygame.Color | tuple[int, int, int]
 ) -> pygame.Surface:
     """
     :param text: The text displayed.
@@ -115,6 +114,5 @@ def render_text(
     return Config.font.render(
         text=text,
         antialias=antialias,
-        color=color,
-        background=background
+        color=color
     )

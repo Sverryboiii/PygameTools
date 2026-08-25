@@ -65,18 +65,18 @@ class DropDown:
             Draw.draw_rect(
                 display=self.display,
                 color=(
-                    self.color[0] + 60,
-                    self.color[1] + 60,
-                    self.color[2] + 60
+                    min(255, self.color[0] + 60),
+                    min(255, self.color[1] + 60),
+                    min(255, self.color[2] + 60)
                 ),
                 rectangle=rect,
                 border_radius=10,
                 width=3
             )
             text = Draw.render_text(
-                str(self.choices[c]),
-                True,
-                Config.BEIGE
+                text=str(self.choices[c]),
+                antialias=True,
+                color=Config.BEIGE
             )
             Draw.draw_surface(text, (rect.x, rect.y))
 
