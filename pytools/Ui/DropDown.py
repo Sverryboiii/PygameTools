@@ -91,6 +91,7 @@ class DropDown:
             Draw.draw_surface(text, (rect.x+10, rect.y-3))
 
     def events(self) -> Any | None:
+        print(self.pressed)
         mp = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()[0]
 
