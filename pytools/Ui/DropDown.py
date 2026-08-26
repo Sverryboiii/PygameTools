@@ -27,6 +27,7 @@ class DropDown:
 
         self.selected: Any = None
         self.opened: bool = False
+        self.pressed: bool = False
 
     def draw(self) -> None:
         Draw.draw_rect(
@@ -53,7 +54,7 @@ class DropDown:
                 True,
                 Config.BEIGE
             ), (
-                self.rect.x+10, self.rect.y
+                self.rect.x+10, self.rect.y-3
             )
         )
 
@@ -87,11 +88,14 @@ class DropDown:
                 antialias=True,
                 color=Config.BEIGE
             )
-            Draw.draw_surface(text, (rect.x+10, rect.y))
+            Draw.draw_surface(text, (rect.x+10, rect.y-3))
 
     def events(self) -> Any | None:
         mp = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()[0]
+
+        if not click:
+            self.pressed = False
 
         if self.opened and click:
             for count, rect in enumerate(self.choice_rects):
@@ -102,6 +106,7 @@ class DropDown:
 
         if Collide.rect_point(self.rect, mp) and click:
             self.opened = not self.opened
+            self.pressed = True
         elif click:
             self.opened = False
 
