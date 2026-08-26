@@ -105,7 +105,9 @@ class DropDown:
                 self.selected = self.choices[count]
                 self.opened = False
 
-        if Collide.rect_point(self.rect, mp) and click and not self.pressed:
+        if Collide.rect_point(self.rect, mp) and click:
+            if self.pressed:
+                return False
             self.opened = not self.opened
             self.pressed = True
         elif click:
