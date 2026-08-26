@@ -20,7 +20,7 @@ class DropDown:
         for i in range(len(self.choices)):
             self.choice_rects.append(pygame.Rect(
                 self.rect.x,
-                self.rect.y + i*self.rect.h,
+                self.rect.y + i*self.rect.h + self.rect.h,
                 self.rect.w,
                 self.rect.h
             ))
@@ -47,6 +47,16 @@ class DropDown:
             width=3
         )
 
+        Draw.draw_surface(
+            Draw.render_text(
+                str(self.selected),
+                True,
+                Config.BEIGE
+            ), (
+                self.rect.x+10, self.rect.y
+            )
+        )
+
         if not self.opened:
             return
 
@@ -54,13 +64,12 @@ class DropDown:
             Draw.draw_rect(
                 display=self.display,
                 color=(
-                    self.color[0] + 30,
-                    self.color[1] + 30,
-                    self.color[2] + 30
+                    min(255, self.color[0] + 30),
+                    min(255, self.color[1] + 30),
+                    min(255, self.color[2] + 30)
                 ),
                 rectangle=rect,
-                border_radius=10,
-                width=3
+                border_radius=10
             )
             Draw.draw_rect(
                 display=self.display,
@@ -78,7 +87,7 @@ class DropDown:
                 antialias=True,
                 color=Config.BEIGE
             )
-            Draw.draw_surface(text, (rect.x, rect.y))
+            Draw.draw_surface(text, (rect.x+10, rect.y))
 
     def events(self) -> Any | None:
         mp = pygame.mouse.get_pos()
