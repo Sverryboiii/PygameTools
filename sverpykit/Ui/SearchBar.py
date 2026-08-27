@@ -1,6 +1,6 @@
-from pytools.Collide import Collide
-from pytools.Draw import Draw
-from pytools.core import Config
+from sverpykit.Collide import Collide
+from sverpykit.Draw import Draw
+from sverpykit.core import Config
 import pygame
 from typing import Any
 

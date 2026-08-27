@@ -1,4 +1,4 @@
-from pytools.core import Config
+from sverpykit.core import Config
 import pygame, sys
 
 tick_counter = 0

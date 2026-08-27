@@ -1,4 +1,4 @@
-from pytools.core import Config, Runtime
+from sverpykit.core import Config, Runtime
 from typing import Callable, Optional
 import pygame
 

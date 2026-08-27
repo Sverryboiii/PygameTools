@@ -1,5 +1,5 @@
-from pytools.Draw import Draw
-from pytools.core import Config
+from sverpykit.Draw import Draw
+from sverpykit.core import Config
 from typing import Any, Callable
 import pygame
 
