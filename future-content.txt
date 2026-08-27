@@ -1,5 +1,4 @@
 Ui:
-DropDown (In Development)
 SearchBar (In Development)
 ToggleButton: A simple buttons that toggles on or off
 ButtonSelection: Select 1 choice using buttons

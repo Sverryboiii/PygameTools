@@ -29,7 +29,7 @@ frame_function: Callable = frame
 tick_function: Callable = tick
 
 # Ui
-font: pygame.font.Font
+font: pygame.font.Font = pygame.font.SysFont("arial", 32)
 
 # Colors
 background_color: pygame.Color | tuple[int, int, int] = (25, 25, 25)

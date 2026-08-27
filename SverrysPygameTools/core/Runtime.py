@@ -5,7 +5,7 @@ tick_counter = 0
 def register_tick():
     global tick_counter
     tick_counter -= Config.delta_time
-    if tick_counter < 0:
+    while tick_counter < 0:
         tick_counter += 1 / Config.tick_rate
         Config.tick_function()
 
