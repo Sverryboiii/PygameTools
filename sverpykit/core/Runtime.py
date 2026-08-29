@@ -1,15 +1,35 @@
+from sverpykit.Ui.Window import Window
 from sverpykit.core import Config
-import pygame, sys
+import pygame
+
+ui_layers = []
+
+def add_layer(
+        layer_type: str,
+        rectangle: pygame.Rect,
+        components: list,
+        color: tuple[int, int, int] = (150, 150, 150)
+) -> None:
+    """
+    :param layer_type: Currently possible: Window.
+    :param rectangle: x, y, width, height of the layer.
+    :param components: A list of UI parts that belong to the layer.
+    :param color: The base color of the layer.
+    :return: Returns nothing.
+    """
+    if layer_type.lower() == "window":
+        ui_layers.append(Window(ui_layers, rectangle, components, color))
 
 tick_counter = 0
-def register_tick():
+def register_tick() -> None:
     global tick_counter
     tick_counter -= Config.delta_time
     while tick_counter < 0:
         tick_counter += 1 / Config.tick_rate
         Config.tick_function()
+        [layer.events() for layer in ui_layers]
 
-def start():
+def start() -> None:
     """
     Makes the main game loop so you don't have to.
     Features:
@@ -32,5 +52,6 @@ def start():
                 Config.exit_function()
 
         Config.frame_function()
+        [layer.draw() for layer in ui_layers]
 
         pygame.display.flip()
