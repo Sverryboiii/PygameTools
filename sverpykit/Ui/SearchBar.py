@@ -12,6 +12,8 @@ class SearchBar:
             color: pygame.Color | tuple[int, int, int] = (50, 50, 50)
     ):
         self.rect: pygame.Rect = rect
+        self.hitbox_offset = (0, 0)
+
         self.display: pygame.Surface = display
         self.color: pygame.Color | tuple[int, int, int] = color
 
@@ -21,7 +23,10 @@ class SearchBar:
 
         self.selected: bool = False
 
-    def draw(self) -> None:
+    def draw(self, display=None) -> None:
+        if not display:
+            display = self.display
+
         color = self.color
         if self.selected:
             color = (
@@ -30,13 +35,13 @@ class SearchBar:
                 min(255, color[2] + 30)
             )
         Draw.draw_rect(
-            display=self.display,
+            display=display,
             color=color,
             rectangle=self.rect,
             border_radius=int(self.rect.h/2)
         )
         Draw.draw_rect(
-            display=self.display,
+            display=display,
             color=(
                 min(255, color[0] + 30),
                 min(255, color[1] + 30),
@@ -49,7 +54,7 @@ class SearchBar:
         Draw.draw_surface(self.stored_surf, (
             self.rect.x + self.rect.w/2 - self.stored_surf.get_width()/2,
             self.rect.y + self.rect.h/2 - self.stored_surf.get_height()/2
-        ))
+        ), display=display)
 
     def events(self) -> Any:
         click = pygame.mouse.get_pressed()[0]
@@ -64,7 +69,12 @@ class SearchBar:
             return
 
         if Collide.rect_point(
-            rect=self.rect,
+            rect=pygame.Rect(
+                self.rect.x + self.hitbox_offset[0],
+                self.rect.y + self.hitbox_offset[1],
+                self.rect.w,
+                self.rect.h
+            ),
             point=mp
         ):
             self.selected = True

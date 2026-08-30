@@ -44,6 +44,7 @@ class Button:
         self.button_color = button_color
 
         self.rect = rect
+        self.hitbox_offset = (0, 0)
         self.rounding = rounding
 
         self.function = function
@@ -57,11 +58,13 @@ class Button:
 
         self.pressed = False
 
-    def draw(self) -> None:
+    def draw(self, display=None) -> None:
+        if not display:
+            display = self.display
 
         # Background
         Draw.draw_rect(
-            display=self.display,
+            display=display,
             color=self.button_color if not self.pressed else (
                 max(0, self.button_color[0] - 30),
                 max(0, self.button_color[1] - 30),
@@ -71,7 +74,7 @@ class Button:
             border_radius=self.rounding
         )
         Draw.draw_rect(
-            display=self.display,
+            display=display,
             color=(
                 max(0, self.button_color[0] + color_change_when_pressed),
                 max(0, self.button_color[1] + color_change_when_pressed),
@@ -88,7 +91,8 @@ class Button:
             destination=(0,0) if not self.center_surf else (
                 self.rect.x + self.rect.w/2 - self.surf.get_width()/2,
                 self.rect.y + self.rect.h/2 - self.surf.get_height()/2
-            )
+            ),
+            display=display
         )
 
     def events(self) -> Any | None:
@@ -99,7 +103,12 @@ class Button:
         click = pygame.mouse.get_pressed()[0]
 
         if self.pressed:
-            if not click or not self.rect.collidepoint(mp):
+            if not click or not pygame.Rect(
+            self.rect.x + self.hitbox_offset[0],
+            self.rect.y + self.hitbox_offset[1],
+            self.rect.w,
+            self.rect.h
+        ).collidepoint(mp):
                 self.pressed = False
                 return self.function(*self.args, **self.kwargs)
             return None
@@ -107,7 +116,12 @@ class Button:
         if not click:
             return None
 
-        if self.rect.collidepoint(mp):
+        if pygame.Rect(
+            self.rect.x + self.hitbox_offset[0],
+            self.rect.y + self.hitbox_offset[1],
+            self.rect.w,
+            self.rect.h
+        ).collidepoint(mp):
             self.pressed = True
         return None
 

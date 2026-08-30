@@ -27,7 +27,9 @@ def register_tick() -> None:
     while tick_counter < 0:
         tick_counter += 1 / Config.tick_rate
         Config.tick_function()
-        [layer.events() for layer in ui_layers]
+        for layer in reversed(ui_layers):
+            collided = layer.events()
+            if collided: break
 
 def start() -> None:
     """

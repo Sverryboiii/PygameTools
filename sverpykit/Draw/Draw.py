@@ -84,15 +84,19 @@ def draw_surface(
         surface: pygame.Surface,
         destination: tuple[float | int, float | int],
         area: pygame.Rect | None = None,
-        special_flags: int = 0
+        special_flags: int = 0,
+        display=None
 ) -> None:
     """
     :param surface: The surface to draw the surface on.
     :param destination: The x and y coordinate of the surface.
     :param area: Where the surface gets cut off.
     :param special_flags: How the colors are shown.
+    :param display: The surface that will be used to draw on.
     """
-    Config.screen.blit(
+    if not display:
+        display = Config.screen
+    display.blit(
         source=surface,
         dest=destination,
         area=area,

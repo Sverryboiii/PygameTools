@@ -78,6 +78,3 @@ def get_delta() -> int | float:
     :return: Returns the time it took for the last frame in ms.
     """
     return Config.delta_time
-
-def start():
-    Runtime.start()
