@@ -15,6 +15,7 @@ from .Ui.Button import Button
 from .Ui.SearchBar import SearchBar
 from .Ui.DropDown import DropDown
 from .Ui.Window import Window
+from .Ui.TextBlock import TextBlock
 
 __all__ = [
     "Config",
