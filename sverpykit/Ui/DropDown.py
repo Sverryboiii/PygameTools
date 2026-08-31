@@ -27,7 +27,7 @@ class DropDown:
                 self.rect.h
             ))
 
-        self.selected: Any = None
+        self.selected: Any = ""
         self.opened: bool = False
         self.pressed: bool = False
 
@@ -97,7 +97,6 @@ class DropDown:
             Draw.draw_surface(text, (rect.x+10, rect.y-3), display=display)
 
     def events(self) -> Any | None:
-        print(self.pressed)
         mp = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()[0]
 
@@ -131,7 +130,8 @@ class DropDown:
 
         return None
 
-    def update(self) -> Any | None:
-        value = self.events()
+    def update(self, check_events: bool = True) -> Any | None:
+        value = None
+        if check_events: value = self.events()
         self.draw()
         return value
