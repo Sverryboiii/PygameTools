@@ -26,10 +26,16 @@ def register_tick() -> None:
     tick_counter -= Config.delta_time
     while tick_counter < 0:
         tick_counter += 1 / Config.tick_rate
+
+        for event in Config.events:
+            if event.type == pygame.QUIT:
+                Config.exit_function()
+
         Config.tick_function()
         for layer in reversed(ui_layers):
-            collided = layer.events()
-            if collided: break
+            if layer.events(): break
+
+        Config.events = []
 
 def start() -> None:
     """
@@ -46,12 +52,8 @@ def start() -> None:
     while True:
         Config.screen.fill(Config.background_color)
         Config.events = pygame.event.get()
-        Config.delta_time = Config.clock.tick(Config.max_fps)
+        Config.delta_time = Config.clock.tick(Config.max_fps)/1000
         register_tick()
-
-        for event in Config.events:
-            if event.type == pygame.QUIT:
-                Config.exit_function()
 
         Config.frame_function()
         [layer.draw() for layer in ui_layers]
