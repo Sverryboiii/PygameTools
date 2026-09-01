@@ -11,8 +11,8 @@ class TextBlock:
         self.text = text
         self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
 
-    def draw(self):
-        [Draw.draw_surface(surf, (self.rect.x, self.rect.y)) for text in self.text_surf]
+    def draw(self, display):
+        [Draw.draw_surface(surf, (self.rect.x, self.rect.y), display=display) for text in self.text_surf]
 
     def change_text(self, text: str):
         self.text = text
