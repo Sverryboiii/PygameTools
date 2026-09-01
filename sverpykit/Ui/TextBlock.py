@@ -8,14 +8,12 @@ class TextBlock:
         text: str
     ):
         self.rect = rect
-        self.text_surf = Draw.render_text(str(text))
+        self.text = text
+        self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
 
     def draw(self):
-        Draw.draw_surface(
-            self.text_surf, (
-                self.rect.x, self.rect.y
-            )
-        )
+        [Draw.draw_surface(surf, (self.rect.x, self.rect.y)) for text in self.text_surf]
 
     def change_text(self, text: str):
-        self.text_surf = Draw.render_text(str(text))
+        self.text = text
+        self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
