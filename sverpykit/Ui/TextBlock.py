@@ -12,7 +12,8 @@ class TextBlock:
         self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
 
     def draw(self, display):
-        [display.blit(surf, (self.rect.x, self.rect.y)) for surf in self.text_surf]
+        for c, surf in enumerate(self.text_surf):
+            display.blit(surf, (self.rect.x, self.rect.y + c*30))
 
     def events(self):
         pass
