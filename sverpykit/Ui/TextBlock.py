@@ -1,6 +1,8 @@
 from sverpykit.Draw import Draw
 import pygame
 
+text_block_font = pygame.font.SysFont("airal", 25)
+
 class TextBlock:
     def __init__(
         self,
@@ -9,11 +11,11 @@ class TextBlock:
     ):
         self.rect = rect
         self.text = text
-        self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
+        self.text_surf = [text_block_font.render(str(part)) for part in text.split("\n")]
 
     def draw(self, display):
         for c, surf in enumerate(self.text_surf):
-            display.blit(surf, (self.rect.x, self.rect.y + c*30))
+            display.blit(surf, (self.rect.x, self.rect.y + c*25))
 
     def events(self):
         pass
