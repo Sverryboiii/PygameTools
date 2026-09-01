@@ -78,6 +78,7 @@ class SearchBar:
                     self.stored = self.stored[:-1]
                 elif event.key == pygame.K_RETURN:
                     self.function(self.stored, *self.args, **self.kwargs)
+                    self.stored = ""
                 elif event.unicode.isprintable():
                     self.stored += event.unicode
 
