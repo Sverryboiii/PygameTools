@@ -23,4 +23,4 @@ class TextBlock:
 
     def change_text(self, text: str):
         self.text = text
-        self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
+        self.text_surf = [text_block_font.render(str(part), True, Config.BEIGE) for part in text.split("\n")]
