@@ -100,7 +100,10 @@ class Button:
         :return: Will return None unless pressed and released (In that case it will return the returned value of the function)
         """
         mp = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()[0]
+        click = False
+        for event in Config.events:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
 
         if self.pressed:
             if not click or not pygame.Rect(

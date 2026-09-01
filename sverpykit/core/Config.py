@@ -18,7 +18,7 @@ screen: pygame.Surface
 
 # Events
 max_fps: int | float = 60
-tick_rate: int | float = 20
+tick_rate: int | float = 1
 events: list[pygame.event.Event] = []
 clock: pygame.time.Clock = pygame.time.Clock()
 delta_time: int

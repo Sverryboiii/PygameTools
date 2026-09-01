@@ -2,14 +2,17 @@ from sverpykit.Collide import Collide
 from sverpykit.Draw import Draw
 from sverpykit.core import Config
 import pygame
-from typing import Any
+from typing import Any, Callable
 
 class SearchBar:
     def __init__(
             self,
+            *args,
             rect: pygame.Rect,
             display: pygame.Surface,
-            color: pygame.Color | tuple[int, int, int] = (50, 50, 50)
+            function: Callable = lambda : None,
+            color: pygame.Color | tuple[int, int, int] = (50, 50, 50),
+            **kwargs
     ):
         self.rect: pygame.Rect = rect
         self.hitbox_offset = (0, 0)
@@ -22,6 +25,10 @@ class SearchBar:
         self.stored_surf: pygame.Surface = Config.font.render(self.stored, True, Config.BEIGE)
 
         self.selected: bool = False
+
+        self.function = function
+        self.args = args
+        self.kwargs = kwargs
 
     def draw(self, display=None) -> None:
         if not display:
@@ -57,13 +64,26 @@ class SearchBar:
         ), display=display)
 
     def events(self) -> Any:
-        click = pygame.mouse.get_pressed()[0]
+        click = False
+        for event in Config.events:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
         mp = pygame.mouse.get_pos()
 
         if self.selected:
-            keys = pygame.key.get_pressed()
-            for k in keys:
-                print(k)
+            for event in Config.events:
+                if event.type != pygame.KEYDOWN:
+                    continue
+                if event.key == pygame.K_BACKSPACE:
+                    self.stored = self.stored[:-1]
+                elif event.key == pygame.K_KP_ENTER:
+                    self.function(*self.args, **self.kwargs)
+                elif event.unicode.isprintable():
+                    self.stored += event.unicode
+
+        if self.stored != self.last_stored:
+            self.stored_surf = Draw.render_text(self.stored)
+        self.last_stored = self.stored
 
         if not click:
             return
@@ -86,5 +106,4 @@ class SearchBar:
         if check_events:
             value = self.events()
         self.draw()
-        self.last_stored = self.stored
         return value
