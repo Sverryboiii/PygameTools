@@ -64,7 +64,10 @@ class SearchBar:
         ), display=display)
 
     def events(self) -> Any:
-        click = pygame.mouse.get_pressed()[0]
+        click = False
+        for event in Config.events:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
         mp = pygame.mouse.get_pos()
 
         if self.selected:

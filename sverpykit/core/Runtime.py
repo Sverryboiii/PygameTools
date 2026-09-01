@@ -25,6 +25,7 @@ def register_tick() -> None:
     global tick_counter
     tick_counter -= Config.delta_time
     while tick_counter < 0:
+        Config.events = pygame.event.get()
         tick_counter += 1 / Config.tick_rate
 
         for event in Config.events:
@@ -34,8 +35,6 @@ def register_tick() -> None:
         Config.tick_function()
         for layer in reversed(ui_layers):
             if layer.events(): break
-
-        Config.events = []
 
 def start() -> None:
     """
@@ -50,11 +49,10 @@ def start() -> None:
     You can change almost all of these!
     """
     while True:
-        Config.screen.fill(Config.background_color)
-        Config.events = pygame.event.get()
         Config.delta_time = Config.clock.tick(Config.max_fps)/1000
         register_tick()
 
+        Config.screen.fill(Config.background_color)
         Config.frame_function()
         [layer.draw() for layer in ui_layers]
 
