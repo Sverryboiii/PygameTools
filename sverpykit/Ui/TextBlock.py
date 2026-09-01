@@ -1,4 +1,5 @@
 from sverpykit.Draw import Draw
+from sverpykit.core import Config
 import pygame
 
 text_block_font = pygame.font.SysFont("airal", 25)
