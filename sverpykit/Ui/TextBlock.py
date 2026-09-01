@@ -12,7 +12,10 @@ class TextBlock:
         self.text_surf = [Draw.render_text(str(part)) for part in text.split("\n")]
 
     def draw(self, display):
-        [Draw.draw_surface(surf, (self.rect.x, self.rect.y), display=display) for surf in self.text_surf]
+        [display.blit(surf, (self.rect.x, self.rect.y)) for surf in self.text_surf]
+
+    def events(self):
+        pass
 
     def change_text(self, text: str):
         self.text = text
