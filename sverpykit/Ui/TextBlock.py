@@ -11,7 +11,7 @@ class TextBlock:
     ):
         self.rect = rect
         self.text = text
-        self.text_surf = [text_block_font.render(str(part)) for part in text.split("\n")]
+        self.text_surf = [text_block_font.render(str(part), True, Config.BEIGE) for part in text.split("\n")]
 
     def draw(self, display):
         for c, surf in enumerate(self.text_surf):
