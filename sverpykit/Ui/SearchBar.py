@@ -77,7 +77,7 @@ class SearchBar:
                 if event.key == pygame.K_BACKSPACE:
                     self.stored = self.stored[:-1]
                 elif event.key == pygame.K_KP_ENTER:
-                    self.function(*self.args, **self.kwargs)
+                    self.function(self.stored, *self.args, **self.kwargs)
                 elif event.unicode.isprintable():
                     self.stored += event.unicode
 
