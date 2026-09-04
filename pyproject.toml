@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sverrys-pygame-tools"
-version = "0.1.1"
+version = "0.1.12"
 dependencies = [
     "pygame"
 ]

@@ -75,7 +75,8 @@ class Window:
             if (self.rect.collidepoint(mp) or self.title_bar_rect.collidepoint(mp)) and click:
                 self.owner.remove(self)
                 self.owner.append(self)
-            return
+            else:
+                return
 
 
         if self.title_bar:

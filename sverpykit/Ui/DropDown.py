@@ -98,7 +98,10 @@ class DropDown:
 
     def events(self) -> Any | None:
         mp = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()[0]
+        click = False
+        for event in Config.events:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                click = True
 
         if not click:
             self.pressed = False

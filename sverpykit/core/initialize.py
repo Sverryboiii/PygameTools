@@ -3,7 +3,7 @@ from typing import Callable, Optional
 import pygame
 
 # Automatic initialization
-pygame.key.set_repeat(500, 5)
+pygame.key.set_repeat(500, 50)
 
 # Manual initialization
 def set_display(
@@ -71,7 +71,7 @@ def set_tick_method(method: Callable) -> None:
     """
     :param method: This method/function gets ran every tick.
     """
-    Config.frame_function = method
+    Config.tick_function = method
 
 def get_delta() -> int | float:
     """
