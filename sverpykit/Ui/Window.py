@@ -78,21 +78,22 @@ class Window:
             return
 
 
-        if self.last_title_bar_touch:
-            x_offset, y_offset = mp[0] - self.last_title_bar_touch[0], mp[1] - self.last_title_bar_touch[1]
-            self.rect.x += x_offset
-            self.rect.y += y_offset
-            self.title_bar_rect.x += x_offset
-            self.title_bar_rect.y += y_offset
-            for component in self.components:
-                component.hitbox_offset = (self.rect.x, self.rect.y)
-            for component in self.operational_buttons:
-                component.rect.x += x_offset
-                component.rect.y += y_offset
-        if self.title_bar_rect.collidepoint(mp) and click:
-            self.last_title_bar_touch = mp
-        else:
-            self.last_title_bar_touch = None
+        if self.title_bar:
+            if self.last_title_bar_touch:
+                x_offset, y_offset = mp[0] - self.last_title_bar_touch[0], mp[1] - self.last_title_bar_touch[1]
+                self.rect.x += x_offset
+                self.rect.y += y_offset
+                self.title_bar_rect.x += x_offset
+                self.title_bar_rect.y += y_offset
+                for component in self.components:
+                    component.hitbox_offset = (self.rect.x, self.rect.y)
+                for component in self.operational_buttons:
+                    component.rect.x += x_offset
+                    component.rect.y += y_offset
+            if self.title_bar_rect.collidepoint(mp) and click:
+                self.last_title_bar_touch = mp
+            else:
+                self.last_title_bar_touch = None
 
         [component.events() for component in self.components]
 

@@ -8,17 +8,20 @@ def add_layer(
         layer_type: str,
         rectangle: pygame.Rect,
         components: list,
-        color: tuple[int, int, int] = (150, 150, 150)
+        color: tuple[int, int, int] = (150, 150, 150),
+
+        **kwargs
 ) -> None:
     """
     :param layer_type: Currently possible: Window.
     :param rectangle: x, y, width, height of the layer.
     :param components: A list of UI parts that belong to the layer.
     :param color: The base color of the layer.
+    :param kwargs: Any extra arguments that may not be accessible for all layer types
     :return: Returns nothing.
     """
     if layer_type.lower() == "window":
-        ui_layers.append(Window(ui_layers, rectangle, components, color))
+        ui_layers.append(Window(ui_layers, rectangle, components, color, **kwargs))
 
 tick_counter = 0
 def register_tick() -> None:
