@@ -38,6 +38,7 @@ def max_rate(
     Config.tick_rate = tick if tick else Config.tick_rate
 
 def set_font(
+        name: str = "default",
         font: str = "arial",
         size: int = 25,
         bold: bool = False,
@@ -45,6 +46,7 @@ def set_font(
         constructor: Optional[Callable[[Optional[str], int, bool, bool], pygame.font.Font]] = None
 ) -> pygame.font.Font:
     """
+    :param name: How to get the font in other parts of sverpykit.
     :param font: The font of the text.
     :param size: How big the font is.
     :param bold: If the font is bold or not.
@@ -52,8 +54,8 @@ def set_font(
     :param constructor: If you like a custom class to be attached to the font.
     :return: Returns the font. Most of the time not needed though.
     """
-    Config.font = pygame.font.SysFont(font, size, bold, italic, constructor)
-    return Config.font
+    Config.fonts[name] = pygame.font.SysFont(font, size, bold, italic, constructor)
+    return Config.fonts[name]
 
 def set_quit_method(method: Callable) -> None:
     """
