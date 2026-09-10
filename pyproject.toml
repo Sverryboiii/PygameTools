@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sverpykit"
-version = "0.1.15"
+version = "0.1.151"
 dependencies = [
     "pygame"
 ]
