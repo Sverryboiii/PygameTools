@@ -23,6 +23,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Clean up old build files
+        run: rm -rf dist/ build/ *.egg-info
+
       - name: Install build tools
         run: pip install build
 
