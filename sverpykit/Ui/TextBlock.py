@@ -1,26 +1,22 @@
 from sverpykit.Draw import Draw
-from sverpykit.core import Config
 import pygame
-
-text_block_font = pygame.font.SysFont("airal", 25)
 
 class TextBlock:
     def __init__(
-        self,
-        rect: pygame.Rect,
-        text: str
+            self,
+            rect: pygame.Rect,
+            text: str,
+            font: str = "default"
     ):
         self.rect = rect
-        self.text = text
-        self.text_surf = [text_block_font.render(str(part), True, Config.BEIGE) for part in text.split("\n")]
+        self.text_surf = Draw.render_text(str(text), name=font)
 
-    def draw(self, display):
-        for c, surf in enumerate(self.text_surf):
-            display.blit(surf, (self.rect.x, self.rect.y + c*25))
-
-    def events(self):
-        pass
+    def draw(self):
+        Draw.draw_surface(
+            self.text_surf, (
+                self.rect.x, self.rect.y
+            ),
+        )
 
     def change_text(self, text: str):
-        self.text = text
-        self.text_surf = [text_block_font.render(str(part), True, Config.BEIGE) for part in text.split("\n")]
+        self.text_surf = Draw.render_text(str(text))

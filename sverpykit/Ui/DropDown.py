@@ -10,10 +10,12 @@ class DropDown:
             rect: pygame.Rect,
             display: pygame.Surface,
             choices: list[Any],
-            color: pygame.Color | tuple[int, int, int] = (50, 50, 50)
+            color: pygame.Color | tuple[int, int, int] = (50, 50, 50),
+            font: str = "default"
     ):
         self.rect = rect
         self.hitbox_offset = (0, 0)
+        self.font = font
 
         self.display = display
         self.color = color
@@ -57,7 +59,8 @@ class DropDown:
             Draw.render_text(
                 str(self.selected),
                 True,
-                Config.BEIGE
+                Config.BEIGE,
+                self.font
             ), (
                 self.rect.x+10, self.rect.y-3
             ),
@@ -92,7 +95,8 @@ class DropDown:
             text = Draw.render_text(
                 text=str(self.choices[c]),
                 antialias=True,
-                color=Config.BEIGE
+                color=Config.BEIGE,
+                name=self.font
             )
             Draw.draw_surface(text, (rect.x+10, rect.y-3), display=display)
 

@@ -106,16 +106,17 @@ def draw_surface(
 def render_text(
         text: str,
         antialias: bool = True,
-        color: pygame.Color | tuple[int, int, int] = Config.BEIGE
+        color: pygame.Color | tuple[int, int, int] = Config.BEIGE,
+        name: str = "default"
 ) -> pygame.Surface:
     """
     :param text: The text displayed.
     :param antialias: Blends outer edges of the text, so it looks smoother.
     :param color: The color of the text.
-    :param background: The color of the background.
+    :param name: Choose what font you want to use. (Must be initialized as font)
     :return: Returns the surface so you can use it in Draw.draw_surface().
     """
-    return Config.font.render(
+    return Config.fonts[name].render(
         text,
         antialias,
         color
