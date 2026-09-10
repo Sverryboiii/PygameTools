@@ -1,1 +1,31 @@
 
+name: Test Package Installation
+
+# Run this every time you push code or open a Pull Request
+on: [push, pull_request]
+
+jobs:
+  test-install:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download your repository's code onto the GitHub runner
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Deploy a clean version of Python on the runner
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 3. Simulate the user running "pip install"
+      - name: Install dependencies and your package
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+
+      # 4. Prove it worked by trying to import your package
+      - name: Verify package works
+        run: |
+          python -c "import sverpykit; print('Imported sverpykit successfully!')"
