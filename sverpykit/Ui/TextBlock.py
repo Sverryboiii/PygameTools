@@ -21,5 +21,8 @@ class TextBlock:
             display=display
         )
 
+    def events(self):
+        pass
+
     def change_text(self, text: str):
         self.text_surf = Draw.render_text(str(text))
