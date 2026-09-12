@@ -18,6 +18,7 @@ class TextBlock:
             self.text_surf, (
                 self.rect.x, self.rect.y
             ),
+            display=display
         )
 
     def change_text(self, text: str):
