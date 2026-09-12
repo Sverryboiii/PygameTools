@@ -9,7 +9,7 @@ from .core.initialize import set_display, set_frame_method, set_font, set_quit_m
 
 # Drawing
 from .Draw.Draw import draw_surface, draw_rect, draw_circle, render_text
-from .Objects.Entity import Player
+from .Objects.Entity import Entity
 
 # Ui parts
 from .Ui.Button import Button
