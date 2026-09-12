@@ -22,7 +22,7 @@ class SearchBar:
 
         self.stored: str = ""
         self.last_stored: str = ""
-        self.stored_surf: pygame.Surface = Config.font.render(self.stored, True, Config.BEIGE)
+        self.stored_surf: pygame.Surface = Config.fonts['default'].render(self.stored, True, Config.BEIGE)
 
         self.selected: bool = False
 
