@@ -10,7 +10,7 @@ class SearchBar:
             *args,
             rect: pygame.Rect,
             display: pygame.Surface,
-            function: Callable = lambda : None,
+            function: Callable = lambda x: None,
             color: pygame.Color | tuple[int, int, int] = (50, 50, 50),
             **kwargs
     ):
@@ -77,8 +77,9 @@ class SearchBar:
                 if event.key == pygame.K_BACKSPACE:
                     self.stored = self.stored[:-1]
                 elif event.key == pygame.K_RETURN:
-                    self.function(self.stored, *self.args, **self.kwargs)
+                    stored = self.stored
                     self.stored = ""
+                    self.function(stored, *self.args, **self.kwargs)
                 elif event.unicode.isprintable():
                     self.stored += event.unicode
 
