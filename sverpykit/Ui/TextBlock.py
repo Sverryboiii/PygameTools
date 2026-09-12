@@ -10,6 +10,7 @@ class TextBlock:
             font: str = "default"
     ):
         self.rect = rect
+        self.text = text
         self.text_surf = Draw.render_text(str(text), name=font)
 
     def draw(self, display):
@@ -25,4 +26,5 @@ class TextBlock:
         pass
 
     def change_text(self, text: str):
+        self.text = text
         self.text_surf = Draw.render_text(str(text))
