@@ -1,5 +1,5 @@
 # Sverrys PygameTools
-Sverrys PygameTools is a wrapper for the library "pygame" that adds a basic runtime and UI logic.
+Sverrys PygameTools is a wrapper for the library "pygame" that adds a UI and game logic.
 
 How to use:<br>
 To use Sverrys PygameTools you must install it from github by executing this command
