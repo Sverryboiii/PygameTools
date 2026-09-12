@@ -1,3 +1,4 @@
+from sverpykit.core import Config
 from sverpykit.Draw import Draw
 import pygame
 
@@ -11,7 +12,8 @@ class TextBlock:
         self.rect = rect
         self.text_surf = Draw.render_text(str(text), name=font)
 
-    def draw(self):
+    def draw(self, display):
+        display = display if display is not None else Config.screen
         Draw.draw_surface(
             self.text_surf, (
                 self.rect.x, self.rect.y
