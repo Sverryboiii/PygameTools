@@ -11,20 +11,21 @@ class TextBlock:
     ):
         self.rect = rect
         self.text = text
-        self.text_surf = Draw.render_text(str(text), name=font)
+        self.text_surfs = [Draw.render_text(str(text), name=font)]
+        self.font = font
 
     def draw(self, display):
         display = display if display is not None else Config.screen
-        Draw.draw_surface(
-            self.text_surf, (
-                self.rect.x, self.rect.y
+        [Draw.draw_surface(
+            surf, (
+                self.rect.x, self.rect.y + c * Config.fonts[self.font].get_height()
             ),
             display=display
-        )
+        ) for c, surf in enumerate(self.text_surfs)]
 
     def events(self):
         pass
 
     def change_text(self, text: str):
         self.text = text
-        self.text_surf = Draw.render_text(str(text))
+        self.text_surfs = [Draw.render_text(part, name=self.font) for part in text.split("\n")]
