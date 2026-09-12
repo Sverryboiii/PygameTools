@@ -18,6 +18,7 @@ class Button:
             display: pygame.Surface,
 
             function: Callable = lambda : None,
+            toggle_button: bool = False,
             rounding: int = 0,
             resize_surface: bool = False,
             alpha_surface: bool = True,
@@ -29,6 +30,7 @@ class Button:
         :param button_color: The background color of the button.
         :param display: The surface where the button gets placed on (Most of the time just the base display).
         :param surface: A surface of any kind (Text, Image, Even a surface with a rectangle).
+        :param toggle_button: Choose if this button is a toggleable or a normal button.
         :param rounding: How much the corners of the button is rounded.
         :param resize_surface: Resize the screen to the highest resolution possible for the button (Could mess up the surface).
         :param alpha_surface: If the background of the surface is invisible (Not needed if the surface is already alpha or
@@ -51,12 +53,15 @@ class Button:
         self.args = args
         self.kwargs = kwargs
 
+        self.toggleable_button = toggle_button
+
         self.surf = surface
         self.resize_surf = resize_surface
         self.alpha_surface = alpha_surface
         self.center_surf = center_surface
 
         self.pressed = False
+        self.toggled = False
 
     def draw(self, display=None) -> None:
         if not display:
@@ -113,7 +118,9 @@ class Button:
             self.rect.h
         ).collidepoint(mp):
                 self.pressed = False
-                return self.function(*self.args, **self.kwargs)
+                self.toggled = not self.toggled
+                if self.toggled:
+                    return self.function(*self.args, **self.kwargs)
             return None
 
         if not click:

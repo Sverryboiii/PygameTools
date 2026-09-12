@@ -1,9 +1,0 @@
-0.1.0:
- - Display
- - Drawing rectangles
- - Drawing surfaces
- - Buttons
-
-0.1.1
- - FPS control
- - Arial font

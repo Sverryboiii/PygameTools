@@ -1,8 +1,15 @@
 Ui:
 SearchBar (In Development)
-Toggleabe Button: A simple buttons that toggles on or off
 ButtonSelection: Select 1 choice using buttons
 MultiButtonSelection: Select multiple choices using buttons
 PopUps
 
 Processes:
+
+Game Objects:
+ - Entity
+ - Block (with collision)
+
+Assets:
+There maybe will be assets added to sverpykit, but I'm not sure of that.
+If there will be assets it will be basic stuff like grass, water etc.

@@ -3,6 +3,7 @@ from sverpykit.core import Config
 import pygame
 
 ui_layers = []
+game_objects = []
 
 def add_layer(
         layer_type: str,
@@ -23,6 +24,13 @@ def add_layer(
     if layer_type.lower() == "window":
         ui_layers.append(Window(ui_layers, rectangle, components, color, **kwargs))
 
+def add_game_object(obj):
+    """
+    :param obj: The object that gets added.
+    :return: Returns nothing.
+    """
+    game_objects.append(obj)
+
 tick_counter = 0
 def register_tick() -> None:
     global tick_counter
@@ -38,6 +46,7 @@ def register_tick() -> None:
         Config.tick_function()
         for layer in reversed(ui_layers):
             if layer.events(): break
+        [obj.events() for obj in game_objects]
 
 def start() -> None:
     """
@@ -58,5 +67,6 @@ def start() -> None:
         Config.screen.fill(Config.background_color)
         Config.frame_function()
         [layer.draw() for layer in ui_layers]
+        [obj.draw() for obj in game_objects]
 
         pygame.display.flip()
