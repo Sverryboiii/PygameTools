@@ -1,10 +1,12 @@
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+description = "A wrapper for pygame."
+readme = "README.md"
 
 [project]
-name = "sverrys-pygame-tools"
-version = "0.1.14"
+name = "sverpykit"
+version = "0.1.151"
 dependencies = [
     "pygame"
 ]
