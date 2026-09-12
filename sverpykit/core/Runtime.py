@@ -48,6 +48,21 @@ def register_tick() -> None:
             if layer.events(): break
         [obj.events() for obj in game_objects]
 
+def update():
+    """
+    Used for start, but can also be called to update 1 frame.
+    :return:
+    """
+    Config.delta_time = Config.clock.tick(Config.max_fps) / 1000
+    register_tick()
+
+    Config.screen.fill(Config.background_color)
+    Config.frame_function()
+    [layer.draw() for layer in ui_layers]
+    [obj.draw() for obj in game_objects]
+
+    pygame.display.flip()
+
 def start() -> None:
     """
     Makes the main game loop so you don't have to.
@@ -61,12 +76,4 @@ def start() -> None:
     You can change almost all of these!
     """
     while True:
-        Config.delta_time = Config.clock.tick(Config.max_fps)/1000
-        register_tick()
-
-        Config.screen.fill(Config.background_color)
-        Config.frame_function()
-        [layer.draw() for layer in ui_layers]
-        [obj.draw() for obj in game_objects]
-
-        pygame.display.flip()
+        update()

@@ -1,8 +1,6 @@
 Ui:
-SearchBar (In Development)
 ButtonSelection: Select 1 choice using buttons
 MultiButtonSelection: Select multiple choices using buttons
-PopUps
 
 Processes:
 

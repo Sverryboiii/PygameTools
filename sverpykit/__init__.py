@@ -2,7 +2,7 @@
 import pygame
 pygame.init()
 from .core import Config, Runtime
-from .core.Runtime import add_layer, add_game_object, start
+from .core.Runtime import add_layer, add_game_object, start, update as run_frame
 from .core.Config import default_exit as quit_game
 from .core.initialize import set_display, set_frame_method, set_font, set_quit_method, set_tick_method,\
     max_rate

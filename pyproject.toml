@@ -6,7 +6,7 @@ readme = "README.md"
 
 [project]
 name = "sverpykit"
-version = "0.1.151"
+version = "0.2.0"
 dependencies = [
     "pygame"
 ]
