@@ -16,12 +16,16 @@ class TextBlock:
 
     def draw(self, display):
         display = display if display is not None else Config.screen
-        [Draw.draw_surface(
-            surf, (
-                self.rect.x, self.rect.y + c * Config.fonts[self.font].get_height()
-            ),
-            display=display
-        ) for c, surf in enumerate(self.text_surfs)]
+
+        offset_y = 0
+        for surf in self.text_surfs:
+            Draw.draw_surface(
+                surf, (
+                    self.rect.x, self.rect.y + offset_y
+                ),
+                display = display
+            )
+            offset_y += surf.get_height()
 
     def events(self):
         pass
@@ -29,3 +33,7 @@ class TextBlock:
     def change_text(self, text: str):
         self.text = text
         self.text_surfs = [Draw.render_text(part, name=self.font) for part in text.split("\n")]
+
+    def add_text(self, text: str, font: str, color: tuple[int, int, int]):
+        self.text = self.text + "\n" + text
+        self.text_surfs.append(Draw.render_text(text, True, color, font))
