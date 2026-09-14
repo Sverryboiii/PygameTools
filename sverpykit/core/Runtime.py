@@ -6,23 +6,13 @@ ui_layers = []
 game_objects = []
 
 def add_layer(
-        layer_type: str,
-        rectangle: pygame.Rect,
-        components: list,
-        color: tuple[int, int, int] = (150, 150, 150),
-
-        **kwargs
+        obj
 ) -> None:
     """
-    :param layer_type: Currently possible: Window.
-    :param rectangle: x, y, width, height of the layer.
-    :param components: A list of UI parts that belong to the layer.
-    :param color: The base color of the layer.
-    :param kwargs: Any extra arguments that may not be accessible for all layer types
+    :param obj: The layer object.
     :return: Returns nothing.
     """
-    if layer_type.lower() == "window":
-        ui_layers.append(Window(ui_layers, rectangle, components, color, **kwargs))
+    ui_layers.append(obj)
 
 def add_game_object(obj):
     """
