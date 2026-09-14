@@ -6,13 +6,17 @@ ui_layers = []
 game_objects = []
 
 def add_layer(
-        obj
+        layer_type: str,
+        rectangle: pygame.Rect,
+        components: list,
+        color: tuple[int, int, int] = (150, 150, 150)
 ) -> None:
     """
-    :param obj: The layer object.
     :return: Returns nothing.
     """
-    ui_layers.append(obj)
+    w = Window(ui_layers, rectangle, components, color)
+    ui_layers.append(w)
+    return w
 
 def add_game_object(obj):
     """
