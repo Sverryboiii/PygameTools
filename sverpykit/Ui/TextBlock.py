@@ -41,8 +41,8 @@ class TextBlock:
                     display,
                     (100, 100, 255),
                     pygame.Rect(
-                        offset_x,
-                        offset_y + payload["text"].get_height()-5,
+                        offset_x + self.rect.x,
+                        offset_y + payload["text"].get_height()-5 + self.rect.y,
                         payload["text"].get_width(),
                         3
                     )
@@ -58,8 +58,13 @@ class TextBlock:
         mp = pygame.mouse.get_pos()
         if self.owner:
             mp = (
-                mp[0] - self.owner.rect.x,
-                mp[1] - self.owner.rect.y
+                mp[0] - self.owner.rect.x - self.rect.x,
+                mp[1] - self.owner.rect.y - self.rect.y
+            )
+        else:
+            mp (
+                mp[0] - self.rect.x,
+                mp[1] - self.rect.y
             )
         click = pygame.mouse.get_pressed()[0]
         for event in pygame.event.get():
