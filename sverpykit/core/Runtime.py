@@ -1,4 +1,5 @@
 from sverpykit.Ui.Window import Window
+from sverpykit.Ui.TextBlock import TextBlock
 from sverpykit.core import Config
 import pygame
 
@@ -10,11 +11,14 @@ def add_layer(
         rectangle: pygame.Rect,
         components: list,
         color: tuple[int, int, int] = (150, 150, 150)
-) -> None:
+) -> Window:
     """
     :return: Returns nothing.
     """
     w = Window(ui_layers, rectangle, components, color)
+    for component in w.components:
+        if isinstance(component, TextBlock):
+            component.owner = w
     ui_layers.append(w)
     return w
 
