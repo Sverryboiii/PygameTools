@@ -62,7 +62,7 @@ class TextBlock:
                 mp[1] - self.owner.rect.y - self.rect.y
             )
         else:
-            mp (
+            mp = (
                 mp[0] - self.rect.x,
                 mp[1] - self.rect.y
             )
