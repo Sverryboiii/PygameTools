@@ -120,3 +120,7 @@ class TextBlock:
             "hyperlink": hyperlink,
             "newline": newline
         })
+
+    def reset(self):
+        self.text = ""
+        self.text_surfs = []

@@ -10,12 +10,13 @@ def add_layer(
         layer_type: str,
         rectangle: pygame.Rect,
         components: list,
-        color: tuple[int, int, int] = (150, 150, 150)
+        color: tuple[int, int, int] = (150, 150, 150),
+        **kwargs
 ) -> Window:
     """
     :return: Returns nothing.
     """
-    w = Window(ui_layers, rectangle, components, color)
+    w = Window(ui_layers, rectangle, components, color, **kwargs)
     for component in w.components:
         if isinstance(component, TextBlock):
             component.owner = w
