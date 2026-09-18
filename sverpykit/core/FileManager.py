@@ -12,6 +12,5 @@ def resource_path(relative_path: str) -> str:
     if not os.path.exists(src_path):
         raise TypeError(f"Please set the src path before you run this function!")
     if hasattr(sys, '_MEIPASS'):
-        print("Not supported yet!")
         return os.path.join(sys._MEIPASS, f"{relative_path}")
     return os.path.join(src_path, f"{relative_path}")
