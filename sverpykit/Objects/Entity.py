@@ -7,11 +7,11 @@ class Entity:
             self,
             hitbox: pygame.Rect,
             surface: pygame.Surface,
-            player_events: dict[str, Callable] | None = None,
+            events: dict[str, Callable] | None = None,
             statistics: dict[str, Any] | None = None,
             states: dict[str, Any] | None = None
     ):
-        player_events = player_events if isinstance(player_events, dict)\
+        events = events if isinstance(events, dict)\
             else {}
         statistics = statistics if isinstance(statistics, dict)\
             else {}
@@ -37,7 +37,7 @@ class Entity:
             "key": Entity.key_events,
             "mouse": Entity.mouse_events
         }
-        self.accepted_events.update(player_events)
+        self.accepted_events.update(events)
 
     def key_events(self, keys: dict):
         pass

@@ -49,7 +49,7 @@ def draw_circle(
         color: pygame.Color | tuple[int, int, int],
         center: tuple[int, int],
         radius: float | int,
-        width: int,
+        width: int = 0,
         draw_top_left: bool = False,
         draw_top_right: bool = False,
         draw_bottom_left: bool = False,
