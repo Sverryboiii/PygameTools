@@ -2,10 +2,11 @@
 import pygame
 pygame.init()
 from .core import Config, Runtime
-from .core.Runtime import add_layer, add_game_object, start, update as run_frame
+from .core.Runtime import add_layer, add_game_object, start, update as run_frame, load_image
 from .core.Config import default_exit as quit_game
 from .core.initialize import set_display, set_frame_method, set_font, set_quit_method, set_tick_method,\
-    max_rate
+    set_src_path, max_rate
+from .core.FileManager import resource_path
 
 # Drawing
 from .Draw.Draw import draw_surface, draw_rect, draw_circle, render_text

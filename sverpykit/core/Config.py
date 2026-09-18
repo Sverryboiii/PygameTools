@@ -1,3 +1,4 @@
+from sverpykit.core import FileManager
 import pygame, sys
 from typing import Callable
 
@@ -32,6 +33,7 @@ tick_function: Callable = tick
 fonts: dict[str, pygame.font.Font] = {
     "default": pygame.font.SysFont("arial",32)
 }
+images: dict[str, pygame.Surface] = {}
 
 # Colors
 background_color: pygame.Color | tuple[int, int, int] = (25, 25, 25)

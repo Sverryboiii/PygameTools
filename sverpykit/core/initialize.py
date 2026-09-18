@@ -1,6 +1,7 @@
-from sverpykit.core import Config, Runtime
+from sverpykit.core import Config, Runtime, FileManager
 from typing import Callable, Optional
-import pygame
+import pygame, os
+from pathlib import Path
 
 # Automatic initialization
 pygame.key.set_repeat(500, 50)
@@ -12,7 +13,8 @@ def set_display(
         flags: int = 0,
         depth: int = 0,
         display: int = 0,
-        vsync: int = 0
+        vsync: int = 0,
+        title: str = "Pygame Window"
 ) -> pygame.Surface:
     """
     :param width: Width of the screen
@@ -21,10 +23,21 @@ def set_display(
     :param depth: How many colors you can use (Most of the time 8-bit is good enough. In which case just leave it blank).
     :param display: Decides which monitor is used for the window.
     :param vsync: Caps framerate to the monitor to avoid screen tearing (Screen tearing is just a visual glitch.)
+    :param title: What gets displayed in the title bar.
     :return:
     """
     Config.screen = pygame.display.set_mode((width, height), flags, depth, display, vsync)
+    pygame.display.set_caption(title)
     return Config.screen
+
+def set_src_path(src_path: Path) -> None:
+    """
+    :param src_path: Use `pathlib.Path(__file__).resolve().parent`.
+    :return: Returns nothing.
+    """
+    if not os.path.exists(src_path):
+        print("WARNING: Src-Path does not exist!")
+    FileManager.src_path = src_path
 
 def max_rate(
         fps: int | None = None,
