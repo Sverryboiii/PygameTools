@@ -17,9 +17,10 @@ Use case: In your tick method you should put path finding, physics, events, etc.
 Use case: In your quit method you can save the user's data and quit using `quit_game()`.
 
 ### Fonts:
-Currently, you can only save 1 font at a time (This will change in future updates).<br>
+You can save and access multiple fonts!<br>
 Use `set_font()` to save a font.<br>
 Parameters:<br>
+\- `name`: Decides what the name of the font will be.<br>
 \- `font`: Decides which font to use (Arial is standard).<br>
 \- `size`: Decides the size of the text in px.<br>
 \- `bold`: Decides if the letters are bold (thick).<br>
@@ -32,6 +33,11 @@ This function caps the rate of the FPS and TPS.
 
 To get the time passed between frames in seconds you use `get_delta()`.<br>
 (Returns a float or an int).
+
+### Files And Surfaces:
+You can set up the sverpykit's file management system by running this exact function:<br>
+`sverpykit.set_src_path(Path(__file__).resolve().parent)`<br>
+Note: This must be run in your src file or be altered with os.path.join().
 
 ### Starting The Game:
 After you have set all the configurations you want you can use the `start()` function
