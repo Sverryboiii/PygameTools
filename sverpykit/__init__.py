@@ -16,8 +16,9 @@ from .Collide.Collide import collides
 
 # Drawing
 from .Draw.Draw import draw_surface, draw_rect, draw_circle, render_text
-from .Objects.Entity import Entity
-from .Objects.Block import Platform
+
+# Object
+from .Objects.Object import Object
 
 # Ui parts
 from .Ui.Button import Button

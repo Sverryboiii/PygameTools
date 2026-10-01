@@ -24,6 +24,14 @@ events: list[pygame.event.Event] = []
 clock: pygame.time.Clock = pygame.time.Clock()
 delta_time: int
 
+# Physics
+gravity = 20
+terminal_velocity = 10
+
+solid_friction = 1
+slippery_friction = 0.7
+air_friction = 0.25
+
 # Functions
 exit_function: Callable = default_exit
 frame_function: Callable = frame

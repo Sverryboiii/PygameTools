@@ -107,9 +107,9 @@ def update():
     register_tick()
 
     Config.screen.fill(Config.background_color)
-    Config.frame_function()
     [layer.draw() for layer in ui_layers]
     [obj.draw() for obj in game_objects]
+    Config.frame_function()
 
     pygame.display.flip()
 
