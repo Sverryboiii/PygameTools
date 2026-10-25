@@ -1,6 +1,6 @@
 from sverpykit.core import Config
 from sverpykit.Draw import Draw
-from sverpykit.Ui import Window
+from sverpykit.Ui import Window, SearchBar
 from typing import Callable, Any
 import pygame
 
@@ -15,6 +15,7 @@ class TextBlock:
         self.rect = rect
         self.text = text
         self.text_surfs: list[dict] = [{"text": Draw.render_text(str(text), name=font), "newline": newline}]
+        self.searchbars: list[SearchBar.SearchBar] = []
         self.font = font
 
         self.owner = None
@@ -28,6 +29,7 @@ class TextBlock:
 
         offset_x = 0
         offset_y = 0
+        searchbars_index = 0
         for payload in self.text_surfs:
             Draw.draw_surface(
                 payload["text"], (
@@ -52,7 +54,17 @@ class TextBlock:
                 offset_x = 0
             else:
                 offset_x += payload["text"].get_width()
+
+            if payload.get("input", False) and payload["input"][0]:
+                sb = self.searchbars[searchbars_index]
+                if self.owner:
+                    sb.hitbox_offset = (self.owner.rect.x, self.owner.rect.y)
+                sb.rect.x = offset_x
+                sb.rect.y = offset_y
+                searchbars_index += 1
         self.last_size = offset_y
+        [sb.draw(display) for sb in self.searchbars]
+        [sb.events() for sb in self.searchbars]
 
     def events(self):
         mp = pygame.mouse.get_pos()
@@ -112,14 +124,25 @@ class TextBlock:
             font: str,
             color: tuple[int, int, int],
             hyperlink: tuple[Callable, list[Any]] | None = None,
+            input_: tuple[bool, Callable, list[Any], str] = (False, lambda : None, [], ""),
             newline: bool = False
     ):
-        self.text = self.text + "\n" + text
+        self.text = self.text + text
         self.text_surfs.append({
             "text": Draw.render_text(text, True, color, font),
             "hyperlink": hyperlink,
-            "newline": newline
+            "newline": newline,
+            "input": input_
         })
+        if input_[0]:
+            print(input_)
+            self.searchbars.append(SearchBar.SearchBar(
+                *input_[2],
+                rect=pygame.Rect(0, 0, 200, Config.fonts[self.font].get_height()),
+                display=Config.screen,
+                function=input_[1],
+                preset=input_[3]
+            ))
 
     def reset(self):
         self.text = ""
