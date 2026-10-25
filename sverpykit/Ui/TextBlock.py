@@ -59,8 +59,8 @@ class TextBlock:
                 sb = self.searchbars[searchbars_index]
                 if self.owner:
                     sb.hitbox_offset = (self.owner.rect.x, self.owner.rect.y)
-                sb.rect.x = offset_x
-                sb.rect.y = offset_y
+                sb.rect.x = offset_x + self.rect.x
+                sb.rect.y = offset_y + self.rect.y
                 searchbars_index += 1
         self.last_size = offset_y
         [sb.draw(display) for sb in self.searchbars]
