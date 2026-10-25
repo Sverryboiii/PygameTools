@@ -12,17 +12,20 @@ class SearchBar:
             display: pygame.Surface,
             function: Callable = lambda x: None,
             color: pygame.Color | tuple[int, int, int] = (50, 50, 50),
+            preset: str = "",
             **kwargs
     ):
         self.rect: pygame.Rect = rect
         self.hitbox_offset = (0, 0)
+
+        self.preset = preset
 
         self.display: pygame.Surface = display
         self.color: pygame.Color | tuple[int, int, int] = color
 
         self.stored: str = ""
         self.last_stored: str = ""
-        self.stored_surf: pygame.Surface = Config.fonts['default'].render(self.stored, True, Config.BEIGE)
+        self.stored_surf: pygame.Surface = Config.fonts['default'].render(f"{self.preset}: {self.stored}", True, Config.BEIGE)
 
         self.selected: bool = False
 
@@ -84,13 +87,13 @@ class SearchBar:
                     self.stored += event.unicode
 
         if self.stored != self.last_stored:
-            self.stored_surf = Draw.render_text(self.stored)
+            self.stored_surf = Draw.render_text(f"{self.preset}: {self.stored}")
         self.last_stored = self.stored
 
         if not click:
             return
 
-        if Collide.rect_point(
+        if Collide.collides.rect_point(
             rect=pygame.Rect(
                 self.rect.x + self.hitbox_offset[0],
                 self.rect.y + self.hitbox_offset[1],
