@@ -27,6 +27,9 @@ from .Ui.DropDown import DropDown
 from .Ui.Window import Window
 from .Ui.TextBlock import TextBlock
 
+# Colors
+from .core.Config import BEIGE
+
 __all__ = [
     "Config",
     "Runtime",
